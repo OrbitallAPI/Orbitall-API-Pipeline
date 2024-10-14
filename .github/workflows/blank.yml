@@ -26,8 +26,8 @@ jobs:
       # Executar a coleção do Postman com o Newman, reporter htmlextra e variáveis de ambiente
       - name: Run Newman Collection
         run: |
-          newman run <seu-arquivo-collection>.json \
-          --environment <seu-arquivo-environment>.json \
+          newman run Pix-Pipeline.postman_collection.json \
+          --environment Orbitall.postman_environment.json \
           -r htmlextra,allure --reporter-htmlextra-export newman-report.html
 
       # Gerar o relatório Allure
