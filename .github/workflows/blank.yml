@@ -1,9 +1,9 @@
 name: Run Newman Collection
 
 on:
-  workflow_dispatch:  # Permite execução manual
+  workflow_dispatch: # Permite execução manual
   schedule:
-    - cron: '30 8 * * 1-5'  # Rodar de segunda a sexta às 8:30 da manhã (UTC)
+    - cron: '30 8 * * 1-5' # Rodar de segunda a sexta às 8:30 da manhã (UTC)
 
 jobs:
   run-newman:
@@ -18,37 +18,41 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Versão do Node.js
+          node-version: '20' # Atualizado para a versão 20 do Node.js
 
       # Instalar Newman, htmlextra reporter e Allure
-      - name: Install dependencies
+      - name: Install Newman
         run: npm install -g newman newman-reporter-htmlextra allure-commandline
 
-      # Executar a coleção do Postman com o Newman e gerar o relatório HTML
+      # Executar a coleção do Postman com o Newman, reporter htmlextra e variáveis de ambiente
       - name: Run Newman Collection
         run: |
           newman run Pix-Pipeline.postman_collection.json \
           --environment Orbitall.postman_environment.json \
           -r htmlextra,allure --reporter-htmlextra-export newman-report.html
 
+      # Mostrar as pastas
+      - name: Show directories
+        run: dir
+
       # Gerar o relatório Allure
       - name: Generate Allure Report
         run: |
           allure generate ./allure-results -o allure-report/
 
-      # Publicar o relatório Allure como artefato do GitHub Actions
-      - name: Publish Allure artifact to GitHub Actions
-        uses: actions/upload-artifact@v3
+      # Publicar o artefato Allure no GitHub Actions
+      - name: Step 4 - Publishing Allure artifact to GitHub Actions
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
 
-      # Deploy para GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # Fazer o deploy para GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages  # Branch onde o relatório será publicado
-          publish_dir: allure-report  # Diretório a ser publicado
-          destination_dir: allure-report  # Pasta no GitHub Pages
+          publish_branch: gh-pages  # default: gh-pages
+          publish_dir: allure-report
+          destination_dir: allure-report
 
