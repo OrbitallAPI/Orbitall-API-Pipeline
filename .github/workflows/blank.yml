@@ -26,13 +26,23 @@ jobs:
       # Executar a coleção do Postman com o Newman, reporter htmlextra e variáveis de ambiente
       - name: Run Newman Collection
         run: |
-          newman run Pix-Pipeline.postman_collection.json \
-          --environment Orbitall.postman_environment.json \
-          -r htmlextra --reporter-htmlextra-export newman-report.html
+          newman run <seu-arquivo-collection>.json \
+          --environment <seu-arquivo-environment>.json \
+          -r htmlextra,allure --reporter-htmlextra-export newman-report.html
 
-      # Fazer upload do relatório gerado como um artefato
-      - name: Upload Newman Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: newman-report
-          path: newman-report.html
+      # Gerar o relatório Allure
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results --clean -o allure-report
+
+      # Fazer o commit e o push dos relatórios para a branch "Reports"
+      - name: Deploy Allure Report to Reports branch
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b Reports
+          mkdir -p Reports/allure-report
+          cp -r allure-report/* Reports/allure-report/
+          git add Reports/allure-report
+          git commit -m "Update Allure Report $(date +"%Y-%m-%d %H:%M:%S")"
+          git push -f origin Reports
