@@ -1,9 +1,9 @@
 name: Run Newman Collection
 
 on:
-  workflow_dispatch: # Permite execução manual
+  workflow_dispatch:  # Permite execução manual
   schedule:
-    - cron: '30 8 * * 1-5' # Rodar de segunda a sexta às 8:30 da manhã (UTC)
+    - cron: '30 8 * * 1-5'  # Rodar de segunda a sexta às 8:30 da manhã (UTC)
 
 jobs:
   run-newman:
@@ -18,38 +18,37 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Versão do Node.js
+          node-version: '16'  # Versão do Node.js
 
       # Instalar Newman, htmlextra reporter e Allure
-      - name: Install Newman
+      - name: Install dependencies
         run: npm install -g newman newman-reporter-htmlextra allure-commandline
 
-      # Executar a coleção do Postman com o Newman, reporter htmlextra e variáveis de ambiente
+      # Executar a coleção do Postman com o Newman e gerar o relatório HTML
       - name: Run Newman Collection
         run: |
           newman run Pix-Pipeline.postman_collection.json \
           --environment Orbitall.postman_environment.json \
           -r htmlextra,allure --reporter-htmlextra-export newman-report.html
 
-      # Listar os arquivos na pasta allure-results
-      - name: List allure-results
-        run: ls allure-results
-
       # Gerar o relatório Allure
       - name: Generate Allure Report
         run: |
-          allure generate allure-results --clean -o allure-report
-          ls allure-report  # Listar arquivos gerados
+          allure generate ./allure-results -o allure-report/
 
-      # Fazer o commit e o push dos relatórios para a branch "Reports"
-      - name: Deploy Allure Report to Reports branch
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout Reports || git checkout -b Reports
-          mkdir -p Reports/allure-report
-          cp -r allure-report/* Reports/allure-report/
-          ls Reports/allure-report  # Listar arquivos na pasta Reports/allure-report
-          git add Reports/allure-report
-          git commit -m "Update Allure Report $(date +"%Y-%m-%d %H:%M:%S")" || echo "No changes to commit"
-          git push -f origin Reports
+      # Publicar o relatório Allure como artefato do GitHub Actions
+      - name: Publish Allure artifact to GitHub Actions
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+
+      # Deploy para GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  # Branch onde o relatório será publicado
+          publish_dir: allure-report  # Diretório a ser publicado
+          destination_dir: allure-report  # Pasta no GitHub Pages
+
