@@ -1,0 +1,8 @@
+{
+  "amount": 1,
+  "description": "teste pix refund",
+  "flow": "pix-refund",
+  "kind": "cash-out",
+  "transactionId": "63baa359-1b22-49b4-9bed-278674a1a971",
+  "transactionDate": "2022-11-08T15:38:16"
+}

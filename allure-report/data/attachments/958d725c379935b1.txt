@@ -1,0 +1,1 @@
+{"status":422,"message":"PaymentAccounts has not permission to transaction type"}

@@ -1,0 +1,40 @@
+{
+    "flow": "pix",
+    "kind": "cash-out",
+    "amount": 252,
+    "description": "TESTE Fernella 2",
+    "initiator": "system",
+    "payer": {
+        "id": "8ae5c981-30f8-4244-a250-4e67f43f2add",
+        "latitude": "-19.506533339113712",
+        "longitude": "-42.57306021103521",
+        "paymentMethod": {
+            "kind": "payment-account",
+            "paymentAccountId": "7eee0dad-0fa9-45e1-b4f7-91aa2074ddee"
+        },
+        "device": {
+            "id": "1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd",
+            "name": "POCO",
+            "manufacturer": "XIOAMI",
+            "version": "10",
+            "fingerprint": "Identificador único do dispositivo",
+            "carrier": "Claro",
+            "country": "Brasil",
+            "locale": "Padrão de idioma",
+            "ip": "192.168.1.20"
+        }
+    },
+    "additionalInformations": {
+        "pix": {
+            "initiationForm": "MANU",
+            "transactionPurpose": "IPAY",
+            "transactionDate": "2023-01-18",
+            "recipient": {
+                "uuidPixDict": "80e5174e-f222-de6c-714d-e7997b35fbfd",
+                "name": "GABRIEL MORAES",
+                "bankISPB": "LOGBANK IP S.A.",
+                "documentNumber": "***.627.128-**"
+            }
+        }
+    }
+}

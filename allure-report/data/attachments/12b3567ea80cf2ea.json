@@ -1,0 +1,12 @@
+{
+    "API_KEY": "46e4f7e0-8697-4c59-b5a1-22c0497e6dc2.HWAP_DPyUwwDz_7_n7i",
+    "Content-Type": "application/json",
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiMTNkMGE2ZWYtMjJkMi00YTJlLWJjYTMtOWVlMTYwZWE0YjE0IiwibmFtZSI6ImRpc3BhdGNoZXItYWNjb3VudHMtZXZlbnRzIiwiY3JlYXRlZEJ5Ijoic3BhcmstdGVhbSJ9LCJjbGllbnRJZCI6IjEzZDBhNmVmLTIyZDItNGEyZS1iY2EzLTllZTE2MGVhNGIxNCIsInBlcm1pc3Npb25zIjpbeyJjcmVhdGVkQXQiOiIyMDIwLTAyLTExVDE3OjEzOjAyLjg0MFoiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTExVDE3OjEzOjAyLjg0MFoiLCJhbGxvd2VkIjpbImdldCIsInBvc3QiLCJwYXRjaCIsImRlbGV0ZSIsIm9wdGlvbnMiXSwicmVzb3VyY2VzIjpbImFjY291bnRzIiwiYWNjb3VudHMvKiIsInBheW1lbnQtYWNjb3VudHMiLCJwYXltZW50LWFjY291bnRzLyoiLCJwcml2YXRlLWxhYmVsLWFjY291bnRzIiwicHJpdmF0ZS1sYWJlbC1hY2NvdW50cy8qIiwidHJhbnNhY3Rpb25zIiwidHJhbnNhY3Rpb25zLyoiLCJwYXltZW50LW1ldGhvZHMiLCJwYXltZW50LW1ldGhvZHMvKiIsInRvcC11cC1wYXltZW50cyIsInRvcC11cC1wYXltZW50cy8qIiwidXNlcnMiLCJ1c2Vycy8qIiwiYXV0aG9yaXplcnMiLCJhdXRob3JpemVycy8qIiwib3B0LWlucyIsIm9wdC1pbnMvKiIsInBheW1lbnQtY2FyZHMiLCJwYXltZW50LWNhcmRzLyoiXX0seyJjcmVhdGVkQXQiOiIyMDIwLTAyLTExVDE3OjEzOjAyLjg0MFoiLCJ1cGRhdGVkQXQiOiIyMDIwLTAyLTExVDE3OjEzOjAyLjg0MFoiLCJkZW5pZWQiOlsicG9zdCJdLCJyZXNvdXJjZXMiOlsidXNlcnMvOmlkL2NoYW5nZS1wYXNzd29yZCJdfV0sImlhdCI6MTYwNzYyMDk3MCwiZXhwIjoxNjA3NzA3MzcwLCJzdWIiOiIxM2QwYTZlZi0yMmQyLTRhMmUtYmNhMy05ZWUxNjBlYTRiMTQifQ.BwlLkUZJ3l_1T8eEk1g0PF0WNoBhXbOui1s7Q8dYkAI",
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "cde08e22-87c8-4e9b-ab3a-d4ecbe18fcc0",
+    "Host": "sandbox-api.stefanini-spark.com",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}

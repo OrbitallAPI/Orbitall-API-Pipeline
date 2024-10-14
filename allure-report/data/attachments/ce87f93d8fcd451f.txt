@@ -1,0 +1,11 @@
+var body = JSON.parse(responseBody);
+postman.setEnvironmentVariable("JWT_TOKEN", body.token);
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Token is present on body", function () {
+    pm.expect(pm.response.text()).to.include('"token":');
+});

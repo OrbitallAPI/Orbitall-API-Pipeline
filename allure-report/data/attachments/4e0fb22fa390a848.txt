@@ -1,0 +1,39 @@
+{
+    "flow": "pix",
+    "kind": "cash-out",
+    "amount": "5000",
+    "description": "KAIQUE TOMÁS BAPTISTA",
+    "payer": {
+        "id": "a559b2f0-2708-478c-9939-700fd63f019a",
+        "latitude": "-22.905447",
+        "longitude": "-43.183029",
+        "paymentMethod": {
+            "kind": "payment-account",
+            "paymentAccountId": "00576b43-8c9f-4e59-8e7b-38dde11ada7b"
+        },
+        "device": {
+            "id": "02483e16-7e5b-4ee8-91b0-35af59517db5",
+            "fingerprint": "samsung/d1xx/d1:11/RP1A.200720.012/N970FXXS7FUL1:user/release-keys",
+            "ip": "10.100.202.166"
+        }
+    },
+    "additionalInformations": {
+        "pix": {
+            "versionPaymentApi": "2",
+            "transactionDate": "2023-03-17T13:30:37.098Z",
+            "receiverReconciliationIdentifier": "190f75a00d6745acbf50739cda69c6e7",
+            "initiationForm": "QRDN",
+            "transactionPurpose": "IPAY",
+            "recipient": {
+                "bankAccount": "1030876",
+                "bankAccountKind": "CACC",
+                "bankAgency": "95",
+                "bankISPB": "21995256",
+                "documentNumber": "40252145801",
+                "endToEndIdQuery": "E21995256202202241200a6fSOFKIGkG",
+                "keyQuery": "40252145801",
+                "name": "MAG SEGUROS"
+            }
+        }
+    }
+}
