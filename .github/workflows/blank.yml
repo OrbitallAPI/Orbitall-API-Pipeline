@@ -31,9 +31,17 @@ jobs:
           --environment Orbitall.postman_environment.json \
           -r htmlextra,allure --reporter-htmlextra-export newman-report.html
 
+      # Mostrar saída do Newman
+      - name: Show Newman output
+        run: cat newman-report.html
+
       # Mostrar as pastas
       - name: Show directories
         run: dir
+
+      # Listar o conteúdo do diretório allure-results
+      - name: List allure-results
+        run: ls -la ./allure-results
 
       # Gerar o relatório Allure
       - name: Generate Allure Report
@@ -55,4 +63,3 @@ jobs:
           publish_branch: gh-pages  # default: gh-pages
           publish_dir: allure-report
           destination_dir: allure-report
-
