@@ -35,13 +35,19 @@ jobs:
       - name: Show Newman output
         run: cat newman-report.html
 
+      # Verificar se os resultados do Allure foram gerados
+      - name: Check Allure Results
+        run: |
+          if [ -d allure-results ]; then
+            echo "Allure results found."
+          else
+            echo "No allure results generated."
+            exit 1
+          fi
+
       # Mostrar as pastas
       - name: Show directories
         run: dir
-
-      # Listar o conteúdo do diretório allure-results
-      - name: List allure-results
-        run: ls -la ./allure-results
 
       # Gerar o relatório Allure
       - name: Generate Allure Report
