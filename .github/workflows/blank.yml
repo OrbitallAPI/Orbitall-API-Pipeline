@@ -1,6 +1,7 @@
 name: Run Newman Collection
 
 on:
+  workflow_dispatch: # Permite execução manual
   schedule:
     - cron: '30 8 * * 1-5' # Rodar de segunda a sexta às 8:30 da manhã (UTC)
 
