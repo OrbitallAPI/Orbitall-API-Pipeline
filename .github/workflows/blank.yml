@@ -22,40 +22,37 @@ jobs:
 
       # Instalar Newman, htmlextra reporter e Allure
       - name: Install Newman
-        run: npm install -g newman newman-reporter-htmlextra allure-commandline
+        run: npm install -g newman newman-reporter-htmlextra newman-reporter-allure allure-commandline
 
-      # Executar a coleção do Postman com o Newman, reporter htmlextra e variáveis de ambiente
+      # Executar a coleção do Postman com o Newman e capturar a saída
       - name: Run Newman Collection
         run: |
           newman run Pix-Pipeline.postman_collection.json \
           --environment Orbitall.postman_environment.json \
-          -r htmlextra,allure --reporter-htmlextra-export newman-report.html
+          -r htmlextra,allure | tee newman-output.log
 
-      # Mostrar saída do Newman
-      - name: Show Newman output
-        run: cat newman-report.html
+      # Listar arquivos gerados
+      - name: List generated files
+        run: ls -la
 
-      # Verificar se os resultados do Allure foram gerados
-      - name: Check Allure Results
+      # Verificar a presença dos resultados do Allure
+      - name: Check allure-results
         run: |
           if [ -d allure-results ]; then
             echo "Allure results found."
+            ls allure-results
           else
             echo "No allure results generated."
             exit 1
           fi
 
-      # Mostrar as pastas
-      - name: Show directories
-        run: dir
-
       # Gerar o relatório Allure
       - name: Generate Allure Report
         run: |
-          allure generate ./allure-results -o allure-report/
+          allure generate allure-results -o allure-report/
 
       # Publicar o artefato Allure no GitHub Actions
-      - name: Step 4 - Publishing Allure artifact to GitHub Actions
+      - name: Publishing Allure artifact to GitHub Actions
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
