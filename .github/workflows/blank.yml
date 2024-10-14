@@ -48,6 +48,7 @@ jobs:
           git checkout Reports || git checkout -b Reports
           mkdir -p Reports/allure-report
           cp -r allure-report/* Reports/allure-report/
+          ls Reports/allure-report  # Listar arquivos na pasta Reports/allure-report
           git add Reports/allure-report
           git commit -m "Update Allure Report $(date +"%Y-%m-%d %H:%M:%S")" || echo "No changes to commit"
           git push -f origin Reports
