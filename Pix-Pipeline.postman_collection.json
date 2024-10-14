@@ -1,0 +1,1237 @@
+{
+	"info": {
+		"_postman_id": "8c655718-e958-4be1-9c40-947a2cc122e5",
+		"name": "Pix Pipeline",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33121968",
+		"_collection_link": "https://orbitall-api-testing.postman.co/workspace/aut-api-test~5192f535-5bec-4c69-99c8-5da1e57782e7/collection/33121968-8c655718-e958-4be1-9c40-947a2cc122e5?action=share&source=collection_link&creator=33121968"
+	},
+	"item": [
+		{
+			"name": "Autorizaçao",
+			"item": [
+				{
+					"name": "AUTHORIZATION_Gerar_JWT_Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"JWT_TOKEN\", body.token);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Token is present on body\", function () {",
+									"    pm.expect(pm.response.text()).to.include('\"token\":');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"name": "Content-Type",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{ENDPOINT}}/authorizers/jwt-token",
+							"host": [
+								"{{ENDPOINT}}"
+							],
+							"path": [
+								"authorizers",
+								"jwt-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction - PIX",
+			"item": [
+				{
+					"name": "PIX Donation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Idempotency-Key",
+								"value": "{{$guid}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 40,\n    \"description\": \"Donation PIX\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"22b7f4f5-8b01-48d8-8442-f999a045b262\",\n        \"latitude\": \"-15.826757\",\n        \"longitude\": \"-47.906367\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"611bbe83-441d-4a97-8b10-7681054ca6c1\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"name\": \"iPhone 13\",\n            \"manufacturer\": \"Apple\",\n            \"version\": \"15.5\",\n            \"fingerprint\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"carrier\": \"unknown\",\n            \"country\": \"BR\",\n            \"locale\": \"pt-BR\",\n            \"ip\": \"192.168.1.7\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"donation\": {\n                \"donationType\": \"eventual\",\n                \"donationInstitutionId\": \"983dc53d-1404-463b-9176-31263b9db936\"\n            }\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix/donation",
+							"protocol": "https",
+							"host": [
+								"sandbox-api",
+								"stefanini-spark",
+								"com"
+							],
+							"path": [
+								"transactions-pix",
+								"donation"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PIX Donation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Idempotency-Key",
+										"value": "e3822682-f1e5-4034-8b6f-c13a62056c78"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 30,\n    \"description\": \"Donation PIX\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"payee\": {\n        \"id\": \"857b0bf0-5da3-4604-94f7-8573ab62e9b8\"\n    },\n    \"payer\": {\n        \"id\": \"05ce103f-c2c5-4b14-8abd-5780d9c61b63\",\n        \"latitude\": \"-15.826757\",\n        \"longitude\": \"-47.906367\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"63b61e40-afd6-4880-a604-851079d44ede\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"name\": \"iPhone 13\",\n            \"manufacturer\": \"Apple\",\n            \"version\": \"15.5\",\n            \"fingerprint\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"carrier\": \"unknown\",\n            \"country\": \"BR\",\n            \"locale\": \"pt-BR\",\n            \"ip\": \"192.168.1.7\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"donation\": {\n                \"donationType\": \"eventual\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix/donation",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix",
+										"donation"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 12:49:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1777"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "96b80858-b431-4e5f-a55f-38779b6ff32f"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "D4gg1FtCoAMFfIA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64467ad1-5447a5620e96113705b66243"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2023-04-24T12:49:24.500Z\",\n    \"amount\": 30,\n    \"description\": \"Donation PIX\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"05ce103f-c2c5-4b14-8abd-5780d9c61b63\",\n        \"latitude\": \"-15.826757\",\n        \"longitude\": \"-47.906367\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"63b61e40-afd6-4880-a604-851079d44ede\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"name\": \"iPhone 13\",\n            \"manufacturer\": \"Apple\",\n            \"version\": \"15.5\",\n            \"fingerprint\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"carrier\": \"unknown\",\n            \"country\": \"BR\",\n            \"locale\": \"pt-BR\",\n            \"ip\": \"192.168.1.7\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/05ce103f-c2c5-4b14-8abd-5780d9c61b63\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=05ce103f-c2c5-4b14-8abd-5780d9c61b63\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=05ce103f-c2c5-4b14-8abd-5780d9c61b63\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"86cfb7ab-892d-4e77-a624-76c7940d97ca\",\n            \"transactionDate\": \"2023-04-24\",\n            \"endToEndId\": \"86cfb7ab-892d-4e77-a624-76c7940d97ca\",\n            \"donation\": {\n                \"donationType\": \"eventual\"\n            },\n            \"recipient\": {\n                \"name\": \"LIONEL MESSI\",\n                \"documentNumber\": \"***.141.228-**\",\n                \"bankISPB\": \"LOGBANK IP S.A.\",\n                \"keyQuery\": \"{\\\"uuidPixDict\\\":\\\"24196d2b-e708-eded-c128-e6b3642981fd\\\",\\\"key\\\":\\\"\\\",\\\"type\\\":\\\"\\\"}\"\n            },\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"d3593096-7699-44f6-9c44-f16dc129ac8f\",\n    \"provider\": \"LOGBANK\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2023-04-24T12:49:34.410Z\",\n            \"updatedAt\": \"2023-04-24T12:49:34.410Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2023-04-24T12:49:34.410Z\",\n            \"updatedAt\": \"2023-04-24T12:49:34.410Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2023-04-24T12:49:34.409Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/d3593096-7699-44f6-9c44-f16dc129ac8f\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						},
+						{
+							"name": "PIX Donation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Idempotency-Key",
+										"value": "{{$guid}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 40,\n    \"description\": \"Donation PIX\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"22b7f4f5-8b01-48d8-8442-f999a045b262\",\n        \"latitude\": \"-15.826757\",\n        \"longitude\": \"-47.906367\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"611bbe83-441d-4a97-8b10-7681054ca6c1\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"name\": \"iPhone 13\",\n            \"manufacturer\": \"Apple\",\n            \"version\": \"15.5\",\n            \"fingerprint\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"carrier\": \"unknown\",\n            \"country\": \"BR\",\n            \"locale\": \"pt-BR\",\n            \"ip\": \"192.168.1.7\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"donation\": {\n                \"donationType\": \"eventual\",\n                \"donationInstitutionId\": \"983dc53d-1404-463b-9176-31263b9db936\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix/donation",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix",
+										"donation"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 22 Aug 2023 20:29:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1925"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ae843dbd-c282-4c9b-81a0-610201471c7b"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "KFEdrE1voAMFtKw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-64e51abd-1f97ba401e6c62c71b1f7fd5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2023-08-22T20:29:52.234Z\",\n    \"amount\": 40,\n    \"description\": \"Donation PIX\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"22b7f4f5-8b01-48d8-8442-f999a045b262\",\n        \"latitude\": \"-15.826757\",\n        \"longitude\": \"-47.906367\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"611bbe83-441d-4a97-8b10-7681054ca6c1\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"name\": \"iPhone 13\",\n            \"manufacturer\": \"Apple\",\n            \"version\": \"15.5\",\n            \"fingerprint\": \"B0487281-B1A4-4709-9637-6C5A914C05DC\",\n            \"carrier\": \"unknown\",\n            \"country\": \"BR\",\n            \"locale\": \"pt-BR\",\n            \"ip\": \"192.168.1.7\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/22b7f4f5-8b01-48d8-8442-f999a045b262\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=22b7f4f5-8b01-48d8-8442-f999a045b262\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=22b7f4f5-8b01-48d8-8442-f999a045b262\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"72574a64-6beb-4051-b1ce-fff4d52d8dca\",\n            \"transactionDate\": \"2023-08-22\",\n            \"endToEndId\": \"72574a64-6beb-4051-b1ce-fff4d52d8dca\",\n            \"donation\": {\n                \"donationType\": \"eventual\",\n                \"donationInstitutionId\": \"983dc53d-1404-463b-9176-31263b9db936\",\n                \"institutionName\": \"teste_sandbox_medico_sem_fronteiras - Suiça Diogo2fdd\"\n            },\n            \"recipient\": {\n                \"name\": \"BANCO DO BRASIL SA\",\n                \"documentNumber\": \"**.000.000/****-**\",\n                \"bankISPB\": \"LOGBANK IP S.A.\",\n                \"keyQuery\": \"{\\\"uuidPixDict\\\":\\\"345603e6-fa32-ef0e-a64a-f7b42b411830\\\",\\\"key\\\":\\\"\\\",\\\"type\\\":\\\"\\\"}\"\n            },\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"dbe48bac-60df-4a21-b5a6-9f68fd2ce215\",\n    \"provider\": \"LOGBANK\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2023-08-22T20:29:56.309Z\",\n            \"updatedAt\": \"2023-08-22T20:29:56.309Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2023-08-22T20:29:56.309Z\",\n            \"updatedAt\": \"2023-08-22T20:29:56.309Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2023-08-22T20:29:56.308Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/dbe48bac-60df-4a21-b5a6-9f68fd2ce215\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "PIX Cash-out Normal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}",
+								"type": "text"
+							},
+							{
+								"key": "idempotency-key",
+								"value": "{{$guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": \"5000\",\n    \"description\": \"KAIQUE TOMÁS BAPTISTA\",\n    \"payer\": {\n        \"id\": \"a559b2f0-2708-478c-9939-700fd63f019a\",\n        \"latitude\": \"-22.905447\",\n        \"longitude\": \"-43.183029\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"00576b43-8c9f-4e59-8e7b-38dde11ada7b\"\n        },\n        \"device\": {\n            \"id\": \"02483e16-7e5b-4ee8-91b0-35af59517db5\",\n            \"fingerprint\": \"samsung/d1xx/d1:11/RP1A.200720.012/N970FXXS7FUL1:user/release-keys\",\n            \"ip\": \"10.100.202.166\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"versionPaymentApi\": \"2\",\n            \"transactionDate\": \"2023-03-17T13:30:37.098Z\",\n            \"receiverReconciliationIdentifier\": \"190f75a00d6745acbf50739cda69c6e7\",\n            \"initiationForm\": \"QRDN\",\n            \"transactionPurpose\": \"IPAY\",\n            \"recipient\": {\n                \"bankAccount\": \"1030876\",\n                \"bankAccountKind\": \"CACC\",\n                \"bankAgency\": \"95\",\n                \"bankISPB\": \"21995256\",\n                \"documentNumber\": \"40252145801\",\n                \"endToEndIdQuery\": \"E21995256202202241200a6fSOFKIGkG\",\n                \"keyQuery\": \"40252145801\",\n                \"name\": \"MAG SEGUROS\"\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+							"protocol": "https",
+							"host": [
+								"sandbox-api",
+								"stefanini-spark",
+								"com"
+							],
+							"path": [
+								"transactions-pix"
+							]
+						},
+						"description": "``` curl\ncurl \"{{url_api}}/transactions\" \\\n  -H 'Authorization: Token obtido em Authorizers' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Idempotency-Key: Chave de idempotência' \\\n  -X POST \\\n  -d '{\n   \"amount\": \"Valor\",\n   \"description\": \"Descrição da Transação\",\n   \"flow\": \"Subtipo da transação\",\n   \"kind\": \"Tipo da transação\",\n   \"payee\": {\n      \"id\": \"Identificador da conta recebedora da transação\",\n      \"latitude\": \"latitude\",\n      \"longitude\": \"longitude\",\n      \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do recebedor da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do recebedor da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n   },\n   \"payer\": {\n        \"id\": \"Identificador da conta pagadora da transação\",\n        \"latitude\": \"latitude\",\n        \"longitude\": \"longitude\",\n        \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do pagador da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do pagador da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n    }\n}' \n```"
+					},
+					"response": [
+						{
+							"name": "Sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-09-27\",\n            \"recipient\": {\n                \"uuidPixDict\": \"d45df1f7-847e-2cca-0312-4863fbd6028a\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Sep 2022 13:06:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1727"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "991123c4-7511-4ce8-af7e-c0773bff143f"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZLAAKFrRoAMFw8w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-633446cd-736896193a6ae8f43de5205f"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-09-28T13:06:21.897Z\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"ceebf551-2ae6-4c41-aeb8-3b7eb64f7311\",\n            \"transactionDate\": \"2022-09-27\",\n            \"pixDescriptionFull\": \"Teste pix v1\",\n            \"endToEndId\": \"ceebf551-2ae6-4c41-aeb8-3b7eb64f7311\",\n            \"recipient\": {},\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"c08679f8-642d-40be-8154-3c513a5d5d43\",\n    \"provider\": \"Logbank\",\n    \"status\": \"awaiting_payment\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-09-28T13:06:28.464Z\",\n            \"updatedAt\": \"2022-09-28T13:06:28.464Z\",\n            \"status\": \"awaiting_payment\"\n        }\n    ],\n    \"updatedAt\": \"2022-09-28T13:06:28.464Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43\",\n            \"method\": \"GET\"\n        },\n        \"confirmTransaction\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43/confirm\",\n            \"method\": \"POST\"\n        },\n        \"cancelTransaction\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43\",\n            \"method\": \"DELETE\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Teste invalid payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "d0ac9624-18c3-4bfc-bd64-5e50f0e3388b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 222,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-09-27\",\n            \"recipient\": {\n                \"uuidPixDict\": \"1030043\"\n                //\"name\": \"1030043\"\n                // \"accountNumber\": \"1030043\"\n                // \"ispb\": \"1030043\"\n                // \"document\": \"1030043\"\n                // \"branch\": \"1030043\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 13:29:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "bc5a4b95-63c5-41da-8d39-f95a59c0491d"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-ErrorType",
+									"value": "BadRequestException"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZHwbLFOMIAMFjTA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-6332faad-5f6f000713c8cc8750798c06"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Could not process payload\"\n}"
+						},
+						{
+							"name": "PIX Cash-out Logbank 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"1660a12e-b705-4de9-9ded-ec1d3c638103\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-10-06\",\n            \"recipient\": {\n                \"name\": \"Gabriel Moraes\",\n                \"documentNumber\": \"44262712826\",\n                \"bankISPB\": \"28505126\",\n                \"bankAgency\": \"0001\",\n                \"bankAccount\": \"00175963\",\n                \"bankAccountKind\": \"TRAN\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 10:58:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1762"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "52cae386-f22f-414c-800f-9d26bb9b4423"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZlEu-HYmIAMFS4w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-633eb4c6-195e3ebc7bac421d1387da22"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-10-06T10:58:14.334Z\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"1660a12e-b705-4de9-9ded-ec1d3c638103\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"0051e5eb-a7a2-4d1e-8e28-a165bf461d11\",\n            \"transactionDate\": \"2022-10-06\",\n            \"pixDescriptionFull\": \"Teste pix v1\",\n            \"endToEndId\": \"0051e5eb-a7a2-4d1e-8e28-a165bf461d11\",\n            \"recipient\": {\n                \"name\": \"Gabriel Moraes\",\n                \"documentNumber\": \"44262712826\",\n                \"bankISPB\": \"28505126\",\n                \"bankAgency\": \"0001\",\n                \"bankAccount\": \"00175963\",\n                \"bankAccountKind\": \"TRAN\"\n            },\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"52019b46-b850-4990-9fbf-193c7af05af5\",\n    \"provider\": \"LOGBANK\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-10-06T10:58:21.218Z\",\n            \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2022-10-06T10:58:21.218Z\",\n            \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/52019b46-b850-4990-9fbf-193c7af05af5\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						},
+						{
+							"name": "PIX Cash-out MAG",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 1,\n    \"description\": \"Teste diego-misrael timeout 1\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"a559b2f0-2708-478c-9939-700fd63f019a\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"00576b43-8c9f-4e59-8e7b-38dde11ada7b\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"versionPaymentApi\": \"2\",\n            \"transactionDate\": \"2022-11-08T17:27:00.000Z\",\n            \"historicComplement\": \"Conta ABCDEFA\",\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"recipient\": {\n                \"name\": \"CATARINA APARECIDA DE OLIVIERA\",\n                \"documentNumber\": \"07322346890\",\n                \"bankISPB\": \"21995256\",\n                \"bankAgency\": \"95\",\n                \"bankAccount\": \"1033514\",\n                \"bankAccountKind\": \"CACC\",\n                \"openingDate\": \"2020-07-11T00:00:00\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 15:38:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1844"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "abd324b0-7a94-49a4-acd4-8f4737f541d6"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "bSeqfHozIAMFmFw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-636a77dc-1947553c5a3aeac9118c17b1"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-11-08T15:38:04.796Z\",\n    \"amount\": 1,\n    \"description\": \"Teste diego-misrael timeout 1\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"a559b2f0-2708-478c-9939-700fd63f019a\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"00576b43-8c9f-4e59-8e7b-38dde11ada7b\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"6eacf766-7d55-4af9-bd55-d087282458c5\",\n            \"transactionDate\": \"2022-11-08T17:27:00.000Z\",\n            \"pixDescriptionFull\": \"Teste diego-misrael timeout 1\",\n            \"endToEndId\": \"E21995256202211081538oG1r7ldFD9G\",\n            \"recipient\": {\n                \"name\": \"CATARINA APARECIDA DE OLIVIERA\",\n                \"documentNumber\": \"07322346890\",\n                \"bankISPB\": \"21995256\",\n                \"bankAgency\": \"95\",\n                \"bankAccount\": \"1033514\",\n                \"bankAccountKind\": \"CACC\"\n            },\n            \"historicComplement\": \"Conta ABCDEFA\",\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"versionPaymentApi\": \"2\"\n        }\n    },\n    \"id\": \"2e12b65b-7b07-4249-bc0b-e406c894696e\",\n    \"provider\": \"BPP\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-11-08T15:38:09.046Z\",\n            \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2022-11-08T15:38:09.046Z\",\n            \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/2e12b65b-7b07-4249-bc0b-e406c894696e\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						},
+						{
+							"name": "CASH-IN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 3,\n    \"description\": \"Teste diego tres\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-in\",\n    \"payee\": {\n        \"id\": \"db483399-d559-4781-9b3c-d0c147b2a61e\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"b159a41b-f1f0-4523-8420-8c89b3b59b28\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"transactionDate\": \"2022-01-14T13:57:00\",\n            \"pixDescriptionFull\": \"Teste diego Dois\",\n            \"endToEndId\": \"E0951581320220114135651038PGXJBB\",\n            \"id\": \"7b81a6c0-5415-4fd6-9c02-06c4e62e4d66\",\n            \"receiverReconciliationIdentifier\": \" \",\n            \"sender\": {\n                \"bankAccount\": \"555524900728\",\n                \"bankAccountKind\": \"CACC\",\n                \"bankAgency\": \"1111\",\n                \"bankISPB\": \"9515813\",\n                \"documentNumber\": \"29304638801\"\n            },\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 17 Mar 2023 18:32:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1732"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "bfb6b526-9b64-4050-b42b-c87411a3bbac"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "B8DMpFTNIAMFUMg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-6414b250-7308f8127dca585e1287dfff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2023-03-17T18:32:49.060Z\",\n    \"amount\": 3,\n    \"description\": \"Teste diego tres\",\n    \"kind\": \"cash-in\",\n    \"payee\": {\n        \"id\": \"db483399-d559-4781-9b3c-d0c147b2a61e\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"b159a41b-f1f0-4523-8420-8c89b3b59b28\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/db483399-d559-4781-9b3c-d0c147b2a61e\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=db483399-d559-4781-9b3c-d0c147b2a61e\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=db483399-d559-4781-9b3c-d0c147b2a61e\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"7b81a6c0-5415-4fd6-9c02-06c4e62e4d66\",\n            \"transactionDate\": \"2022-01-14T13:57:00\",\n            \"pixDescriptionFull\": \"Teste diego tres\",\n            \"endToEndId\": \"E0951581320220114135651038PGXJBB\",\n            \"receiverReconciliationIdentifier\": \" \",\n            \"sender\": {\n                \"documentNumber\": \"29304638801\",\n                \"bankISPB\": \"9515813\",\n                \"bankAgency\": \"1111\",\n                \"bankAccount\": \"555524900728\",\n                \"bankAccountKind\": \"CACC\"\n            },\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"af005876-f552-4621-ada9-9edc08bffdcd\",\n    \"status\": \"approved\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2023-03-17T18:32:53.374Z\",\n            \"updatedAt\": \"2023-03-17T18:32:53.374Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2023-03-17T18:32:53.374Z\",\n            \"updatedAt\": \"2023-03-17T18:32:53.374Z\",\n            \"status\": \"approved\"\n        }\n    ],\n    \"updatedAt\": \"2023-03-17T18:32:53.373Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/af005876-f552-4621-ada9-9edc08bffdcd\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "PIX Cash-out UUID PIXDICT",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}",
+								"type": "text"
+							},
+							{
+								"key": "idempotency-key",
+								"value": "{{$guid}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Idempotency-Key",
+								"value": "{{$guid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 252,\n    \"description\": \"TESTE Fernella 2\",\n    \"initiator\": \"system\",\n    \"payer\": {\n        \"id\": \"8ae5c981-30f8-4244-a250-4e67f43f2add\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"7eee0dad-0fa9-45e1-b4f7-91aa2074ddee\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2023-01-18\",\n            \"recipient\": {\n                \"uuidPixDict\": \"80e5174e-f222-de6c-714d-e7997b35fbfd\",\n                \"name\": \"GABRIEL MORAES\",\n                \"bankISPB\": \"LOGBANK IP S.A.\",\n                \"documentNumber\": \"***.627.128-**\"\n            }\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix/v2/",
+							"protocol": "https",
+							"host": [
+								"sandbox-api",
+								"stefanini-spark",
+								"com"
+							],
+							"path": [
+								"transactions-pix",
+								"v2",
+								""
+							]
+						},
+						"description": "``` curl\ncurl \"{{url_api}}/transactions\" \\\n  -H 'Authorization: Token obtido em Authorizers' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Idempotency-Key: Chave de idempotência' \\\n  -X POST \\\n  -d '{\n   \"amount\": \"Valor\",\n   \"description\": \"Descrição da Transação\",\n   \"flow\": \"Subtipo da transação\",\n   \"kind\": \"Tipo da transação\",\n   \"payee\": {\n      \"id\": \"Identificador da conta recebedora da transação\",\n      \"latitude\": \"latitude\",\n      \"longitude\": \"longitude\",\n      \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do recebedor da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do recebedor da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n   },\n   \"payer\": {\n        \"id\": \"Identificador da conta pagadora da transação\",\n        \"latitude\": \"latitude\",\n        \"longitude\": \"longitude\",\n        \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do pagador da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do pagador da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n    }\n}' \n```"
+					},
+					"response": [
+						{
+							"name": "Sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-09-27\",\n            \"recipient\": {\n                \"uuidPixDict\": \"d45df1f7-847e-2cca-0312-4863fbd6028a\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Sep 2022 13:06:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1727"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "991123c4-7511-4ce8-af7e-c0773bff143f"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZLAAKFrRoAMFw8w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-633446cd-736896193a6ae8f43de5205f"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-09-28T13:06:21.897Z\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=9ae16826-5428-4059-87df-28792b28f601\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"ceebf551-2ae6-4c41-aeb8-3b7eb64f7311\",\n            \"transactionDate\": \"2022-09-27\",\n            \"pixDescriptionFull\": \"Teste pix v1\",\n            \"endToEndId\": \"ceebf551-2ae6-4c41-aeb8-3b7eb64f7311\",\n            \"recipient\": {},\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"c08679f8-642d-40be-8154-3c513a5d5d43\",\n    \"provider\": \"Logbank\",\n    \"status\": \"awaiting_payment\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-09-28T13:06:28.464Z\",\n            \"updatedAt\": \"2022-09-28T13:06:28.464Z\",\n            \"status\": \"awaiting_payment\"\n        }\n    ],\n    \"updatedAt\": \"2022-09-28T13:06:28.464Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43\",\n            \"method\": \"GET\"\n        },\n        \"confirmTransaction\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43/confirm\",\n            \"method\": \"POST\"\n        },\n        \"cancelTransaction\": {\n            \"href\": \"/transactions/c08679f8-642d-40be-8154-3c513a5d5d43\",\n            \"method\": \"DELETE\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Teste invalid payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "d0ac9624-18c3-4bfc-bd64-5e50f0e3388b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 222,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"9ae16826-5428-4059-87df-28792b28f601\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"18be90e9-2065-4533-b3a0-eb749d9c5a8e\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-09-27\",\n            \"recipient\": {\n                \"uuidPixDict\": \"1030043\"\n                //\"name\": \"1030043\"\n                // \"accountNumber\": \"1030043\"\n                // \"ispb\": \"1030043\"\n                // \"document\": \"1030043\"\n                // \"branch\": \"1030043\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 13:29:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "bc5a4b95-63c5-41da-8d39-f95a59c0491d"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-ErrorType",
+									"value": "BadRequestException"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZHwbLFOMIAMFjTA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-6332faad-5f6f000713c8cc8750798c06"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Could not process payload\"\n}"
+						},
+						{
+							"name": "PIX Cash-out Logbank 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"1660a12e-b705-4de9-9ded-ec1d3c638103\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"transactionDate\": \"2022-10-06\",\n            \"recipient\": {\n                \"name\": \"Gabriel Moraes\",\n                \"documentNumber\": \"44262712826\",\n                \"bankISPB\": \"28505126\",\n                \"bankAgency\": \"0001\",\n                \"bankAccount\": \"00175963\",\n                \"bankAccountKind\": \"TRAN\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 10:58:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1762"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "52cae386-f22f-414c-800f-9d26bb9b4423"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "ZlEu-HYmIAMFS4w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-633eb4c6-195e3ebc7bac421d1387da22"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-10-06T10:58:14.334Z\",\n    \"kind\": \"cash-out\",\n    \"amount\": 10,\n    \"description\": \"Teste pix v1\",\n    \"payer\": {\n        \"id\": \"5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n        \"latitude\": \"-19.506533339113712\",\n        \"longitude\": \"-42.57306021103521\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"1660a12e-b705-4de9-9ded-ec1d3c638103\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"1d0cf1e3-a9d0-42f2-bdf1-c6b7e9eacddd\",\n            \"name\": \"POCO\",\n            \"manufacturer\": \"XIOAMI\",\n            \"version\": \"10\",\n            \"fingerprint\": \"Identificador único do dispositivo\",\n            \"carrier\": \"Claro\",\n            \"country\": \"Brasil\",\n            \"locale\": \"Padrão de idioma\",\n            \"ip\": \"192.168.1.20\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=5589b7dc-dd20-49ab-b0c6-4cf9fe52bded\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"0051e5eb-a7a2-4d1e-8e28-a165bf461d11\",\n            \"transactionDate\": \"2022-10-06\",\n            \"pixDescriptionFull\": \"Teste pix v1\",\n            \"endToEndId\": \"0051e5eb-a7a2-4d1e-8e28-a165bf461d11\",\n            \"recipient\": {\n                \"name\": \"Gabriel Moraes\",\n                \"documentNumber\": \"44262712826\",\n                \"bankISPB\": \"28505126\",\n                \"bankAgency\": \"0001\",\n                \"bankAccount\": \"00175963\",\n                \"bankAccountKind\": \"TRAN\"\n            },\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\"\n        }\n    },\n    \"id\": \"52019b46-b850-4990-9fbf-193c7af05af5\",\n    \"provider\": \"LOGBANK\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-10-06T10:58:21.218Z\",\n            \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2022-10-06T10:58:21.218Z\",\n            \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2022-10-06T10:58:21.218Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/52019b46-b850-4990-9fbf-193c7af05af5\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						},
+						{
+							"name": "PIX Cash-out MAG",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "{{$guid}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 1,\n    \"description\": \"Teste diego-misrael timeout 1\",\n    \"flow\": \"pix\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"a559b2f0-2708-478c-9939-700fd63f019a\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"kind\": \"payment-account\",\n            \"paymentAccountId\": \"00576b43-8c9f-4e59-8e7b-38dde11ada7b\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"versionPaymentApi\": \"2\",\n            \"transactionDate\": \"2022-11-08T17:27:00.000Z\",\n            \"historicComplement\": \"Conta ABCDEFA\",\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"recipient\": {\n                \"name\": \"CATARINA APARECIDA DE OLIVIERA\",\n                \"documentNumber\": \"07322346890\",\n                \"bankISPB\": \"21995256\",\n                \"bankAgency\": \"95\",\n                \"bankAccount\": \"1033514\",\n                \"bankAccountKind\": \"CACC\",\n                \"openingDate\": \"2020-07-11T00:00:00\"\n            }\n        }\n    }\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 15:38:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1844"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "abd324b0-7a94-49a4-acd4-8f4737f541d6"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "bSeqfHozIAMFmFw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-636a77dc-1947553c5a3aeac9118c17b1"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix\",\n    \"createdAt\": \"2022-11-08T15:38:04.796Z\",\n    \"amount\": 1,\n    \"description\": \"Teste diego-misrael timeout 1\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"a559b2f0-2708-478c-9939-700fd63f019a\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"00576b43-8c9f-4e59-8e7b-38dde11ada7b\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=a559b2f0-2708-478c-9939-700fd63f019a\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"6eacf766-7d55-4af9-bd55-d087282458c5\",\n            \"transactionDate\": \"2022-11-08T17:27:00.000Z\",\n            \"pixDescriptionFull\": \"Teste diego-misrael timeout 1\",\n            \"endToEndId\": \"E21995256202211081538oG1r7ldFD9G\",\n            \"recipient\": {\n                \"name\": \"CATARINA APARECIDA DE OLIVIERA\",\n                \"documentNumber\": \"07322346890\",\n                \"bankISPB\": \"21995256\",\n                \"bankAgency\": \"95\",\n                \"bankAccount\": \"1033514\",\n                \"bankAccountKind\": \"CACC\"\n            },\n            \"historicComplement\": \"Conta ABCDEFA\",\n            \"instructionType\": \"PAGPRI\",\n            \"instructionPriority\": \"HIGH\",\n            \"initiationForm\": \"MANU\",\n            \"transactionPurpose\": \"IPAY\",\n            \"versionPaymentApi\": \"2\"\n        }\n    },\n    \"id\": \"2e12b65b-7b07-4249-bc0b-e406c894696e\",\n    \"provider\": \"BPP\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-11-08T15:38:09.046Z\",\n            \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2022-11-08T15:38:09.046Z\",\n            \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2022-11-08T15:38:09.046Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/2e12b65b-7b07-4249-bc0b-e406c894696e\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "PIX Refund Cash-out Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}"
+							},
+							{
+								"key": "idempotency-key",
+								"value": "d0ac9624-18c3-4bfc-bd64-5e50f0e3388b"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 1,\n  \"description\": \"teste pix refund\",\n  \"flow\": \"pix-refund\",\n  \"kind\": \"cash-out\",\n  \"transactionId\": \"63baa359-1b22-49b4-9bed-278674a1a971\",\n  \"transactionDate\": \"2022-11-08T15:38:16\"\n}"
+						},
+						"url": {
+							"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+							"protocol": "https",
+							"host": [
+								"sandbox-api",
+								"stefanini-spark",
+								"com"
+							],
+							"path": [
+								"transactions-pix"
+							]
+						},
+						"description": "Valores para descrição\n// AM05 || FR01 || AM09 || BE08\n\n``` curl\ncurl \"{{url_api}}/transactions\" \\\n  -H 'Authorization: Token obtido em Authorizers' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Idempotency-Key: Chave de idempotência' \\\n  -X POST \\\n  -d '{\n   \"amount\": \"Valor\",\n   \"description\": \"Descrição da Transação\",\n   \"flow\": \"Subtipo da transação\",\n   \"kind\": \"Tipo da transação\",\n   \"payee\": {\n      \"id\": \"Identificador da conta recebedora da transação\",\n      \"latitude\": \"latitude\",\n      \"longitude\": \"longitude\",\n      \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do recebedor da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do recebedor da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n   },\n   \"payer\": {\n        \"id\": \"Identificador da conta pagadora da transação\",\n        \"latitude\": \"latitude\",\n        \"longitude\": \"longitude\",\n        \"paymentMethod\": {\n        \"kind\": \"Tipo do método de pagamento do pagador da transação\",\n        \"paymentAccountId\": \"Identificador do método de pagamento do pagador da transação\"\n      },\n      \"device\": {\n         \"id\": \"Identificador do Dispositivo\",\n         \"name\": \"Nome do Dispositivo\",\n         \"manufacturer\": \"Empresa desenvolvedora do dispositivo\",\n         \"version\": \"número da versão\",\n         \"fingerprint\": \"Identificador único do dispositivo\",\n         \"carrier\": \"Operadora\",\n         \"country\": \"País\",\n         \"locale\": \"Padrão de idioma\",\n         \"ip\": \"Identificador de Rede\"\n      }\n    }\n}' \n\n```"
+					},
+					"response": [
+						{
+							"name": "PIX Refund Cash-out Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{JWT_TOKEN}}"
+									},
+									{
+										"key": "idempotency-key",
+										"value": "d0ac9624-18c3-4bfc-bd64-5e50f0e3388b"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"amount\": 1,\n  \"description\": \"teste pix refund\",\n  \"flow\": \"pix-refund\",\n  \"kind\": \"cash-out\",\n  \"transactionId\": \"63baa359-1b22-49b4-9bed-278674a1a971\",\n  \"transactionDate\": \"2022-11-08T15:38:16\"\n}"
+								},
+								"url": {
+									"raw": "https://sandbox-api.stefanini-spark.com/transactions-pix",
+									"protocol": "https",
+									"host": [
+										"sandbox-api",
+										"stefanini-spark",
+										"com"
+									],
+									"path": [
+										"transactions-pix"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 17:09:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1867"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "1dfaa31b-c322-4f30-aabc-418be6c3e73c"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "bSsAmFx0oAMFW0w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-636a8d36-40d6a8dd62fb6c4908c0613e"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"flow\": \"pix-refund\",\n    \"createdAt\": \"2022-11-08T17:09:11.106Z\",\n    \"amount\": 1,\n    \"description\": \"teste pix refund\",\n    \"kind\": \"cash-out\",\n    \"payer\": {\n        \"id\": \"2cf798c3-cdc6-4f4f-9041-ddc541c3e1c1\",\n        \"latitude\": \"23\",\n        \"longitude\": \"26\",\n        \"paymentMethod\": {\n            \"paymentAccountId\": \"46dac4a4-b479-405d-b1b3-633e32a91932\",\n            \"kind\": \"payment-account\"\n        },\n        \"device\": {\n            \"id\": \"358472042445412\",\n            \"name\": \"Celular\",\n            \"manufacturer\": \"MG\",\n            \"version\": \"v1\",\n            \"fingerprint\": \"Mock fingerprint\",\n            \"carrier\": \"Operadora Mock\",\n            \"country\": \"BR\",\n            \"locale\": \"SP\",\n            \"ip\": \"127.0.0.1\"\n        },\n        \"_links\": {\n            \"account\": {\n                \"href\": \"/accounts/2cf798c3-cdc6-4f4f-9041-ddc541c3e1c1\",\n                \"method\": \"GET\"\n            },\n            \"paymentAccount\": {\n                \"href\": \"/payment-accounts?customerId=2cf798c3-cdc6-4f4f-9041-ddc541c3e1c1\",\n                \"method\": \"GET\"\n            },\n            \"privateLabelAccount\": {\n                \"href\": \"/private-label-accounts?customerId=2cf798c3-cdc6-4f4f-9041-ddc541c3e1c1\",\n                \"method\": \"GET\"\n            }\n        }\n    },\n    \"additionalInformations\": {\n        \"pix\": {\n            \"id\": \"698b0580-1902-4386-9908-5f8a7a708102\",\n            \"transactionDate\": \"2022-11-08T15:38:16\",\n            \"pixDescriptionFull\": \"teste pix refund\",\n            \"endToEndId\": \"698b0580-1902-4386-9908-5f8a7a708102\",\n            \"originalEndToEndId\": \"E21995256202211081538oG1r7ldFD9G\",\n            \"originalAmount\": 1,\n            \"originalTransactionId\": \"63baa359-1b22-49b4-9bed-278674a1a971\",\n            \"originalInstantPaymentId\": \"f9f4d09c-ddd7-455e-badc-6efb5aadee13\",\n            \"originalTransactionDate\": \"2022-11-08T15:38:16\",\n            \"recipient\": {\n                \"documentNumber\": \"50736045805\",\n                \"bankISPB\": \"21995256\",\n                \"bankAgency\": \"95\",\n                \"bankAccount\": \"1029827\",\n                \"bankAccountKind\": \"TRAN\"\n            }\n        }\n    },\n    \"id\": \"d01ea99e-6f38-4c39-8362-af68ce05367b\",\n    \"provider\": \"BPP\",\n    \"status\": \"processing\",\n    \"statusHistory\": [\n        {\n            \"createdAt\": \"2022-11-08T17:09:19.408Z\",\n            \"updatedAt\": \"2022-11-08T17:09:19.408Z\",\n            \"status\": \"awaiting_payment\"\n        },\n        {\n            \"createdAt\": \"2022-11-08T17:09:19.408Z\",\n            \"updatedAt\": \"2022-11-08T17:09:19.408Z\",\n            \"status\": \"processing\"\n        }\n    ],\n    \"updatedAt\": \"2022-11-08T17:09:19.407Z\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"/transactions/d01ea99e-6f38-4c39-8362-af68ce05367b\",\n            \"method\": \"GET\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Key",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "https://sandbox-api.stefanini-spark.com/payment-accounts/pix/get/63b61e40-afd6-4880-a604-851079d44ede?key=teste897_dev@gmail.com&keyType=EMAIL",
+							"protocol": "https",
+							"host": [
+								"sandbox-api",
+								"stefanini-spark",
+								"com"
+							],
+							"path": [
+								"payment-accounts",
+								"pix",
+								"get",
+								"63b61e40-afd6-4880-a604-851079d44ede"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "teste897_dev@gmail.com"
+								},
+								{
+									"key": "keyType",
+									"value": "EMAIL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
