@@ -1,6 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3550","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Tue Oct 29 08:41:46 UTC 2024","passed","Tue Oct 29 08:41:49 UTC 2024","","Autorizaçao","",""
-"","4199","Get Key","Pix Pipeline","Tue Oct 29 08:42:11 UTC 2024","passed","Tue Oct 29 08:42:15 UTC 2024","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -53,8 +51,7 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","2032","PIX Cash-out UUID PIXDICT","Pix Pipeline","Tue Oct 29 08:42:08 UTC 2024","passed","Tue Oct 29 08:42:10 UTC 2024","","Transaction - PIX","",""
-"","7446","PIX Donation","Pix Pipeline","Tue Oct 29 08:41:49 UTC 2024","passed","Tue Oct 29 08:41:57 UTC 2024","","Transaction - PIX","",""
+```","2278","PIX Cash-out UUID PIXDICT","Pix Pipeline","Wed Oct 30 08:44:22 UTC 2024","passed","Wed Oct 30 08:44:25 UTC 2024","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -107,7 +104,8 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","11837","PIX Cash-out Normal","Pix Pipeline","Tue Oct 29 08:41:57 UTC 2024","passed","Tue Oct 29 08:42:08 UTC 2024","","Transaction - PIX","",""
+```","11954","PIX Cash-out Normal","Pix Pipeline","Wed Oct 30 08:44:10 UTC 2024","passed","Wed Oct 30 08:44:22 UTC 2024","","Transaction - PIX","",""
+"","4356","Get Key","Pix Pipeline","Wed Oct 30 08:44:25 UTC 2024","passed","Wed Oct 30 08:44:29 UTC 2024","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -164,4 +162,6 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","337","PIX Refund Cash-out Copy","Pix Pipeline","Tue Oct 29 08:42:10 UTC 2024","passed","Tue Oct 29 08:42:11 UTC 2024","","Transaction - PIX","",""
+```","318","PIX Refund Cash-out Copy","Pix Pipeline","Wed Oct 30 08:44:25 UTC 2024","passed","Wed Oct 30 08:44:25 UTC 2024","","Transaction - PIX","",""
+"","2222","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Wed Oct 30 08:44:01 UTC 2024","passed","Wed Oct 30 08:44:03 UTC 2024","","Autorizaçao","",""
+"","7717","PIX Donation","Pix Pipeline","Wed Oct 30 08:44:03 UTC 2024","passed","Wed Oct 30 08:44:10 UTC 2024","","Transaction - PIX","",""
