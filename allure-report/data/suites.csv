@@ -1,6 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3642","Get Key","Pix Pipeline","Wed Nov 27 08:44:55 UTC 2024","passed","Wed Nov 27 08:44:59 UTC 2024","","Transaction - PIX","",""
-"","1178","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Wed Nov 27 08:44:34 UTC 2024","passed","Wed Nov 27 08:44:35 UTC 2024","","Autorizaçao","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -53,7 +51,10 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","11295","PIX Cash-out Normal","Pix Pipeline","Wed Nov 27 08:44:41 UTC 2024","passed","Wed Nov 27 08:44:53 UTC 2024","","Transaction - PIX","",""
+```","11720","PIX Cash-out Normal","Pix Pipeline","Thu Nov 28 08:44:07 UTC 2024","passed","Thu Nov 28 08:44:19 UTC 2024","","Transaction - PIX","",""
+"","3385","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Thu Nov 28 08:43:56 UTC 2024","passed","Thu Nov 28 08:43:59 UTC 2024","","Autorizaçao","",""
+"","7833","PIX Donation","Pix Pipeline","Thu Nov 28 08:43:59 UTC 2024","passed","Thu Nov 28 08:44:07 UTC 2024","","Transaction - PIX","",""
+"","3450","Get Key","Pix Pipeline","Thu Nov 28 08:44:21 UTC 2024","passed","Thu Nov 28 08:44:25 UTC 2024","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -106,7 +107,7 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","2046","PIX Cash-out UUID PIXDICT","Pix Pipeline","Wed Nov 27 08:44:53 UTC 2024","passed","Wed Nov 27 08:44:55 UTC 2024","","Transaction - PIX","",""
+```","2063","PIX Cash-out UUID PIXDICT","Pix Pipeline","Thu Nov 28 08:44:19 UTC 2024","passed","Thu Nov 28 08:44:21 UTC 2024","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -163,5 +164,4 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","304","PIX Refund Cash-out Copy","Pix Pipeline","Wed Nov 27 08:44:55 UTC 2024","passed","Wed Nov 27 08:44:55 UTC 2024","","Transaction - PIX","",""
-"","6157","PIX Donation","Pix Pipeline","Wed Nov 27 08:44:35 UTC 2024","passed","Wed Nov 27 08:44:41 UTC 2024","","Transaction - PIX","",""
+```","301","PIX Refund Cash-out Copy","Pix Pipeline","Thu Nov 28 08:44:21 UTC 2024","passed","Thu Nov 28 08:44:21 UTC 2024","","Transaction - PIX","",""
