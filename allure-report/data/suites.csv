@@ -1,5 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3834","Get Key","Pix Pipeline","Fri Nov 29 08:43:53 UTC 2024","passed","Fri Nov 29 08:43:56 UTC 2024","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -52,62 +51,8 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","11178","PIX Cash-out Normal","Pix Pipeline","Fri Nov 29 08:43:39 UTC 2024","passed","Fri Nov 29 08:43:50 UTC 2024","","Transaction - PIX","",""
-"``` curl
-curl ""{{url_api}}/transactions"" \
-  -H 'Authorization: Token obtido em Authorizers' \
-  -H 'Content-Type: application/json' \
-  -H 'Idempotency-Key: Chave de idempotência' \
-  -X POST \
-  -d '{
-   ""amount"": ""Valor"",
-   ""description"": ""Descrição da Transação"",
-   ""flow"": ""Subtipo da transação"",
-   ""kind"": ""Tipo da transação"",
-   ""payee"": {
-      ""id"": ""Identificador da conta recebedora da transação"",
-      ""latitude"": ""latitude"",
-      ""longitude"": ""longitude"",
-      ""paymentMethod"": {
-        ""kind"": ""Tipo do método de pagamento do recebedor da transação"",
-        ""paymentAccountId"": ""Identificador do método de pagamento do recebedor da transação""
-      },
-      ""device"": {
-         ""id"": ""Identificador do Dispositivo"",
-         ""name"": ""Nome do Dispositivo"",
-         ""manufacturer"": ""Empresa desenvolvedora do dispositivo"",
-         ""version"": ""número da versão"",
-         ""fingerprint"": ""Identificador único do dispositivo"",
-         ""carrier"": ""Operadora"",
-         ""country"": ""País"",
-         ""locale"": ""Padrão de idioma"",
-         ""ip"": ""Identificador de Rede""
-      }
-   },
-   ""payer"": {
-        ""id"": ""Identificador da conta pagadora da transação"",
-        ""latitude"": ""latitude"",
-        ""longitude"": ""longitude"",
-        ""paymentMethod"": {
-        ""kind"": ""Tipo do método de pagamento do pagador da transação"",
-        ""paymentAccountId"": ""Identificador do método de pagamento do pagador da transação""
-      },
-      ""device"": {
-         ""id"": ""Identificador do Dispositivo"",
-         ""name"": ""Nome do Dispositivo"",
-         ""manufacturer"": ""Empresa desenvolvedora do dispositivo"",
-         ""version"": ""número da versão"",
-         ""fingerprint"": ""Identificador único do dispositivo"",
-         ""carrier"": ""Operadora"",
-         ""country"": ""País"",
-         ""locale"": ""Padrão de idioma"",
-         ""ip"": ""Identificador de Rede""
-      }
-    }
-}' 
-```","2396","PIX Cash-out UUID PIXDICT","Pix Pipeline","Fri Nov 29 08:43:50 UTC 2024","passed","Fri Nov 29 08:43:52 UTC 2024","","Transaction - PIX","",""
-"","1285","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Fri Nov 29 08:43:31 UTC 2024","passed","Fri Nov 29 08:43:32 UTC 2024","","Autorizaçao","",""
-"","6498","PIX Donation","Pix Pipeline","Fri Nov 29 08:43:32 UTC 2024","passed","Fri Nov 29 08:43:39 UTC 2024","","Transaction - PIX","",""
+```","10941","PIX Cash-out Normal","Pix Pipeline","Mon Dec 02 08:45:10 UTC 2024","passed","Mon Dec 02 08:45:21 UTC 2024","","Transaction - PIX","",""
+"","6525","PIX Donation","Pix Pipeline","Mon Dec 02 08:45:03 UTC 2024","passed","Mon Dec 02 08:45:10 UTC 2024","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -164,4 +109,59 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","380","PIX Refund Cash-out Copy","Pix Pipeline","Fri Nov 29 08:43:52 UTC 2024","passed","Fri Nov 29 08:43:53 UTC 2024","","Transaction - PIX","",""
+```","407","PIX Refund Cash-out Copy","Pix Pipeline","Mon Dec 02 08:45:23 UTC 2024","passed","Mon Dec 02 08:45:24 UTC 2024","","Transaction - PIX","",""
+"","3741","Get Key","Pix Pipeline","Mon Dec 02 08:45:24 UTC 2024","passed","Mon Dec 02 08:45:27 UTC 2024","","Transaction - PIX","",""
+"``` curl
+curl ""{{url_api}}/transactions"" \
+  -H 'Authorization: Token obtido em Authorizers' \
+  -H 'Content-Type: application/json' \
+  -H 'Idempotency-Key: Chave de idempotência' \
+  -X POST \
+  -d '{
+   ""amount"": ""Valor"",
+   ""description"": ""Descrição da Transação"",
+   ""flow"": ""Subtipo da transação"",
+   ""kind"": ""Tipo da transação"",
+   ""payee"": {
+      ""id"": ""Identificador da conta recebedora da transação"",
+      ""latitude"": ""latitude"",
+      ""longitude"": ""longitude"",
+      ""paymentMethod"": {
+        ""kind"": ""Tipo do método de pagamento do recebedor da transação"",
+        ""paymentAccountId"": ""Identificador do método de pagamento do recebedor da transação""
+      },
+      ""device"": {
+         ""id"": ""Identificador do Dispositivo"",
+         ""name"": ""Nome do Dispositivo"",
+         ""manufacturer"": ""Empresa desenvolvedora do dispositivo"",
+         ""version"": ""número da versão"",
+         ""fingerprint"": ""Identificador único do dispositivo"",
+         ""carrier"": ""Operadora"",
+         ""country"": ""País"",
+         ""locale"": ""Padrão de idioma"",
+         ""ip"": ""Identificador de Rede""
+      }
+   },
+   ""payer"": {
+        ""id"": ""Identificador da conta pagadora da transação"",
+        ""latitude"": ""latitude"",
+        ""longitude"": ""longitude"",
+        ""paymentMethod"": {
+        ""kind"": ""Tipo do método de pagamento do pagador da transação"",
+        ""paymentAccountId"": ""Identificador do método de pagamento do pagador da transação""
+      },
+      ""device"": {
+         ""id"": ""Identificador do Dispositivo"",
+         ""name"": ""Nome do Dispositivo"",
+         ""manufacturer"": ""Empresa desenvolvedora do dispositivo"",
+         ""version"": ""número da versão"",
+         ""fingerprint"": ""Identificador único do dispositivo"",
+         ""carrier"": ""Operadora"",
+         ""country"": ""País"",
+         ""locale"": ""Padrão de idioma"",
+         ""ip"": ""Identificador de Rede""
+      }
+    }
+}' 
+```","2301","PIX Cash-out UUID PIXDICT","Pix Pipeline","Mon Dec 02 08:45:21 UTC 2024","passed","Mon Dec 02 08:45:23 UTC 2024","","Transaction - PIX","",""
+"","1208","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Mon Dec 02 08:45:02 UTC 2024","passed","Mon Dec 02 08:45:03 UTC 2024","","Autorizaçao","",""
