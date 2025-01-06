@@ -55,9 +55,9 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","374","PIX Refund Cash-out Copy","Pix Pipeline","Fri Jan 03 08:40:49 UTC 2025","passed","Fri Jan 03 08:40:49 UTC 2025","","Transaction - PIX","",""
-"","1201","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Fri Jan 03 08:40:26 UTC 2025","passed","Fri Jan 03 08:40:27 UTC 2025","","Autorizaçao","",""
-"","7183","PIX Donation","Pix Pipeline","Fri Jan 03 08:40:27 UTC 2025","passed","Fri Jan 03 08:40:34 UTC 2025","","Transaction - PIX","",""
+```","372","PIX Refund Cash-out Copy","Pix Pipeline","Mon Jan 06 08:41:42 UTC 2025","passed","Mon Jan 06 08:41:42 UTC 2025","","Transaction - PIX","",""
+"","957","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Mon Jan 06 08:41:20 UTC 2025","passed","Mon Jan 06 08:41:21 UTC 2025","","Autorizaçao","",""
+"","7217","PIX Donation","Pix Pipeline","Mon Jan 06 08:41:21 UTC 2025","passed","Mon Jan 06 08:41:28 UTC 2025","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -110,7 +110,7 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","12307","PIX Cash-out Normal","Pix Pipeline","Fri Jan 03 08:40:34 UTC 2025","passed","Fri Jan 03 08:40:46 UTC 2025","","Transaction - PIX","",""
+```","2538","PIX Cash-out UUID PIXDICT","Pix Pipeline","Mon Jan 06 08:41:39 UTC 2025","passed","Mon Jan 06 08:41:42 UTC 2025","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -163,5 +163,5 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","2118","PIX Cash-out UUID PIXDICT","Pix Pipeline","Fri Jan 03 08:40:46 UTC 2025","passed","Fri Jan 03 08:40:49 UTC 2025","","Transaction - PIX","",""
-"","3906","Get Key","Pix Pipeline","Fri Jan 03 08:40:49 UTC 2025","passed","Fri Jan 03 08:40:53 UTC 2025","","Transaction - PIX","",""
+```","11705","PIX Cash-out Normal","Pix Pipeline","Mon Jan 06 08:41:28 UTC 2025","passed","Mon Jan 06 08:41:39 UTC 2025","","Transaction - PIX","",""
+"","3884","Get Key","Pix Pipeline","Mon Jan 06 08:41:42 UTC 2025","passed","Mon Jan 06 08:41:46 UTC 2025","","Transaction - PIX","",""
