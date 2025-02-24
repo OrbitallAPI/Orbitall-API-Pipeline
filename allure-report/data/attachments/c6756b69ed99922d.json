@@ -1,0 +1,10 @@
+{
+    "Date": "Mon, 24 Feb 2025 08:42:02 GMT",
+    "Content-Type": "application/json",
+    "Content-Length": "82",
+    "Connection": "keep-alive",
+    "x-amzn-RequestId": "befc21f9-9fb0-4ecf-8328-58111c781ba4",
+    "x-amzn-ErrorType": "AccessDeniedException",
+    "x-amz-apigw-id": "GeySIGIgoAMFTiQ=",
+    "X-Amzn-Trace-Id": "Root=1-67bc30da-5cb11afe41e915087f822bf3"
+}
