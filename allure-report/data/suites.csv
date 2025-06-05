@@ -1,5 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","124","Get Key","Pix Pipeline","Wed Jun 04 08:48:02 UTC 2025","passed","Wed Jun 04 08:48:02 UTC 2025","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -52,7 +51,9 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","1190","PIX Cash-out UUID PIXDICT","Pix Pipeline","Wed Jun 04 08:48:01 UTC 2025","passed","Wed Jun 04 08:48:02 UTC 2025","","Transaction - PIX","",""
+```","152","PIX Cash-out Normal","Pix Pipeline","Thu Jun 05 08:46:23 UTC 2025","passed","Thu Jun 05 08:46:24 UTC 2025","","Transaction - PIX","",""
+"","1238","PIX Donation","Pix Pipeline","Thu Jun 05 08:46:22 UTC 2025","passed","Thu Jun 05 08:46:23 UTC 2025","","Transaction - PIX","",""
+"","205","Get Key","Pix Pipeline","Thu Jun 05 08:46:25 UTC 2025","passed","Thu Jun 05 08:46:25 UTC 2025","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -109,7 +110,7 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","86","PIX Refund Cash-out Copy","Pix Pipeline","Wed Jun 04 08:48:02 UTC 2025","passed","Wed Jun 04 08:48:02 UTC 2025","","Transaction - PIX","",""
+```","160","PIX Refund Cash-out Copy","Pix Pipeline","Thu Jun 05 08:46:25 UTC 2025","passed","Thu Jun 05 08:46:25 UTC 2025","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -162,6 +163,5 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","99","PIX Cash-out Normal","Pix Pipeline","Wed Jun 04 08:48:01 UTC 2025","passed","Wed Jun 04 08:48:01 UTC 2025","","Transaction - PIX","",""
-"","325","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Wed Jun 04 08:47:59 UTC 2025","failed","Wed Jun 04 08:47:59 UTC 2025","","Autorizaçao","",""
-"","1340","PIX Donation","Pix Pipeline","Wed Jun 04 08:47:59 UTC 2025","passed","Wed Jun 04 08:48:01 UTC 2025","","Transaction - PIX","",""
+```","1277","PIX Cash-out UUID PIXDICT","Pix Pipeline","Thu Jun 05 08:46:24 UTC 2025","passed","Thu Jun 05 08:46:25 UTC 2025","","Transaction - PIX","",""
+"","590","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Thu Jun 05 08:46:22 UTC 2025","failed","Thu Jun 05 08:46:22 UTC 2025","","Autorizaçao","",""
