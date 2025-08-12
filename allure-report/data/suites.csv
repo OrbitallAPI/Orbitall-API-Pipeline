@@ -51,8 +51,9 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","1007","PIX Cash-out UUID PIXDICT","Pix Pipeline","Mon Aug 11 08:51:11 UTC 2025","passed","Mon Aug 11 08:51:12 UTC 2025","","Transaction - PIX","",""
-"","65","Get Key","Pix Pipeline","Mon Aug 11 08:51:12 UTC 2025","passed","Mon Aug 11 08:51:12 UTC 2025","","Transaction - PIX","",""
+```","1069","PIX Cash-out UUID PIXDICT","Pix Pipeline","Tue Aug 12 08:48:20 UTC 2025","passed","Tue Aug 12 08:48:21 UTC 2025","","Transaction - PIX","",""
+"","359","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Tue Aug 12 08:48:18 UTC 2025","failed","Tue Aug 12 08:48:18 UTC 2025","","Autorizaçao","",""
+"","74","Get Key","Pix Pipeline","Tue Aug 12 08:48:21 UTC 2025","passed","Tue Aug 12 08:48:21 UTC 2025","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -109,8 +110,8 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","116","PIX Refund Cash-out Copy","Pix Pipeline","Mon Aug 11 08:51:12 UTC 2025","passed","Mon Aug 11 08:51:12 UTC 2025","","Transaction - PIX","",""
-"","1395","PIX Donation","Pix Pipeline","Mon Aug 11 08:51:09 UTC 2025","passed","Mon Aug 11 08:51:11 UTC 2025","","Transaction - PIX","",""
+```","123","PIX Refund Cash-out Copy","Pix Pipeline","Tue Aug 12 08:48:21 UTC 2025","passed","Tue Aug 12 08:48:21 UTC 2025","","Transaction - PIX","",""
+"","1294","PIX Donation","Pix Pipeline","Tue Aug 12 08:48:18 UTC 2025","passed","Tue Aug 12 08:48:20 UTC 2025","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -163,5 +164,4 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","127","PIX Cash-out Normal","Pix Pipeline","Mon Aug 11 08:51:11 UTC 2025","passed","Mon Aug 11 08:51:11 UTC 2025","","Transaction - PIX","",""
-"","349","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","Mon Aug 11 08:51:09 UTC 2025","failed","Mon Aug 11 08:51:09 UTC 2025","","Autorizaçao","",""
+```","130","PIX Cash-out Normal","Pix Pipeline","Tue Aug 12 08:48:20 UTC 2025","passed","Tue Aug 12 08:48:20 UTC 2025","","Transaction - PIX","",""

@@ -1,12 +1,12 @@
 {
-    "Date": "Mon, 11 Aug 2025 08:51:09 GMT",
+    "Date": "Tue, 12 Aug 2025 08:48:21 GMT",
     "Content-Type": "application/json",
     "Content-Length": "82",
     "Connection": "keep-alive",
-    "x-amzn-RequestId": "4d457ce9-4dab-4820-8caf-f48391ac7fc4",
+    "x-amzn-RequestId": "fbc9605f-003d-4dfb-8536-7a754e1210dd",
     "access-control-allow-origin": "*",
     "access-control-allow-headers": "*",
     "x-amzn-ErrorType": "AccessDeniedException",
-    "x-amz-apigw-id": "PIhHtGjuIAMFpcw=",
-    "X-Amzn-Trace-Id": "Root=1-6899aefd-2e6a23d9612dc489366ec322"
+    "x-amz-apigw-id": "PLzpZFMtoAMFzLA=",
+    "X-Amzn-Trace-Id": "Root=1-689affd5-30d3007a2da1982f3893dc1c"
 }
