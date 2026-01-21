@@ -51,8 +51,7 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","121","PIX Cash-out Normal","Pix Pipeline","2026-01-20","passed","2026-01-20","","Transaction - PIX","",""
-"","468","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","2026-01-20","failed","2026-01-20","","Autorizaçao","",""
+```","62","PIX Cash-out UUID PIXDICT","Pix Pipeline","2026-01-21","passed","2026-01-21","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -105,7 +104,9 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","122","PIX Cash-out UUID PIXDICT","Pix Pipeline","2026-01-20","passed","2026-01-20","","Transaction - PIX","",""
+```","71","PIX Cash-out Normal","Pix Pipeline","2026-01-21","passed","2026-01-21","","Transaction - PIX","",""
+"","1049","PIX Donation","Pix Pipeline","2026-01-21","passed","2026-01-21","","Transaction - PIX","",""
+"","415","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","2026-01-21","failed","2026-01-21","","Autorizaçao","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -162,6 +163,5 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","113","PIX Refund Cash-out Copy","Pix Pipeline","2026-01-20","passed","2026-01-20","","Transaction - PIX","",""
-"","1020","PIX Donation","Pix Pipeline","2026-01-20","passed","2026-01-20","","Transaction - PIX","",""
-"","116","Get Key","Pix Pipeline","2026-01-20","passed","2026-01-20","","Transaction - PIX","",""
+```","64","PIX Refund Cash-out Copy","Pix Pipeline","2026-01-21","passed","2026-01-21","","Transaction - PIX","",""
+"","60","Get Key","Pix Pipeline","2026-01-21","passed","2026-01-21","","Transaction - PIX","",""
