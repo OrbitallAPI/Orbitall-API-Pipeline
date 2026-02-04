@@ -1,0 +1,10 @@
+{
+    "Date": "Wed, 04 Feb 2026 09:05:51 GMT",
+    "Content-Type": "application/json",
+    "Content-Length": "16",
+    "Connection": "keep-alive",
+    "x-amzn-RequestId": "4c75342f-03c5-4c7c-a8ec-f73cf6047500",
+    "x-amzn-ErrorType": "AuthorizerConfigurationException",
+    "x-amz-apigw-id": "YP7NdHfmIAMFc4Q=",
+    "X-Amzn-Trace-Id": "Root=1-69830bef-26ed512004c26e7e3f42f2d1"
+}
