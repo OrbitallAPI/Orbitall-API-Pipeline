@@ -1,5 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1083","PIX Donation","Pix Pipeline","2026-07-10","passed","2026-07-10","","Transaction - PIX","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -52,7 +51,8 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","50","PIX Cash-out UUID PIXDICT","Pix Pipeline","2026-07-10","passed","2026-07-10","","Transaction - PIX","",""
+```","56","PIX Cash-out UUID PIXDICT","Pix Pipeline","2026-07-13","passed","2026-07-13","","Transaction - PIX","",""
+"","1093","PIX Donation","Pix Pipeline","2026-07-13","passed","2026-07-13","","Transaction - PIX","",""
 "Valores para descrição
 // AM05 || FR01 || AM09 || BE08
 
@@ -109,9 +109,8 @@ curl ""{{url_api}}/transactions"" \
     }
 }' 
 
-```","49","PIX Refund Cash-out Copy","Pix Pipeline","2026-07-10","passed","2026-07-10","","Transaction - PIX","",""
-"","315","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","2026-07-10","failed","2026-07-10","","Autorizaçao","",""
-"","39","Get Key","Pix Pipeline","2026-07-10","passed","2026-07-10","","Transaction - PIX","",""
+```","46","PIX Refund Cash-out Copy","Pix Pipeline","2026-07-13","passed","2026-07-13","","Transaction - PIX","",""
+"","323","AUTHORIZATION_Gerar_JWT_Token","Pix Pipeline","2026-07-13","failed","2026-07-13","","Autorizaçao","",""
 "``` curl
 curl ""{{url_api}}/transactions"" \
   -H 'Authorization: Token obtido em Authorizers' \
@@ -164,4 +163,5 @@ curl ""{{url_api}}/transactions"" \
       }
     }
 }' 
-```","48","PIX Cash-out Normal","Pix Pipeline","2026-07-10","passed","2026-07-10","","Transaction - PIX","",""
+```","54","PIX Cash-out Normal","Pix Pipeline","2026-07-13","passed","2026-07-13","","Transaction - PIX","",""
+"","40","Get Key","Pix Pipeline","2026-07-13","passed","2026-07-13","","Transaction - PIX","",""
