@@ -1,13 +1,14 @@
 {
     "Authorization": "null",
+    "idempotency-key": "2341a22a-7fb8-450f-8ff5-3d299398e77b",
     "Content-Type": "application/json",
-    "Idempotency-Key": "58458b21-475f-48e6-adce-91b8bf9c33a1",
+    "Idempotency-Key": "68c49db4-3013-4f32-ae83-ab5688014df6",
     "User-Agent": "PostmanRuntime/7.39.1",
     "Accept": "*/*",
     "Cache-Control": "no-cache",
-    "Postman-Token": "3bf56959-9508-4dc7-a5e6-edaaabbd9318",
+    "Postman-Token": "d7cc82ab-0973-43c1-9e30-08198647552f",
     "Host": "sandbox-api.stefanini-spark.com",
     "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
-    "Content-Length": "1003"
+    "Content-Length": "1273"
 }
