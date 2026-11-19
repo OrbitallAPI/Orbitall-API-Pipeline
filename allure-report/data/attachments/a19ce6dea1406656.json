@@ -1,0 +1,10 @@
+{
+    "Date": "Thu, 19 Nov 2026 17:30:33 GMT",
+    "Content-Type": "application/json",
+    "Content-Length": "16",
+    "Connection": "keep-alive",
+    "x-amzn-RequestId": "3a6beff0-8d60-4e4a-b676-3149ab592e96",
+    "x-amzn-ErrorType": "AuthorizerConfigurationException",
+    "x-amz-apigw-id": "HGTI-EtdoAMFlGg=",
+    "X-Amzn-Trace-Id": "Root=1-6aff3238-3d0a99d032d381a33c13c63a"
+}
